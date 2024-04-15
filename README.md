@@ -1,8 +1,6 @@
-# GROUP-NAME - lab NUMBER - variant NUMBER
+# BABEL - Lab1 - Variant4 Setbasedonhash-map,separatechaining
 
-This is an example project which demonstrates project structure and necessary
-CI checks. It is not the best structure for real-world projects, but good
-enough for educational purposes.
+I tried TAT.
 
 ## Project structure
 
@@ -17,15 +15,11 @@ enough for educational purposes.
 ## Contribution
 
 - Aleksandr Penskoi (EMAIL) -- all work.
+- He Jian(Stellar117) -- part work.
 
 ## Changelog
 
-- 29.03.2022 - 2
-  - Add test coverage.
-- 29.03.2022 - 1
-  - Update README. Add formal sections.
-- 29.03.2022 - 0
-  - Initial
+2024/4/15 bulid the workspace
 
 ## Design notes
 
