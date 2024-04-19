@@ -63,7 +63,7 @@ class HashMap:
         result = []
         for bucket in self.buckets:
             if bucket:
-                result.extend(bucket)Z
+                result.extend(bucket)
         return result
 
     def filter_by_predicate(self, predicate):
