@@ -1,6 +1,6 @@
 import unittest
 from hypothesis import given, strategies
-from hashmap import MonoidHashMap
+from hash import MonoidHashMap
 
 
 class TestMonoidHashMap(unittest.TestCase):
