@@ -23,6 +23,14 @@ class HashMap:
     def set_element(self, key, value):
         self.add(key, value)
 
+    def get(self, key):
+        index = self._hash_function(key)
+        if self.buckets[index] is not None:
+            for existing_key, value in self.buckets[index]:
+                if existing_key == key:
+                    return value
+        return None  # 或者是其他表示“未找到”的值
+
     def remove(self, key):
         index = self._hash_function(key)
         if self.buckets[index] is not None:
