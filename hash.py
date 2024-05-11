@@ -7,7 +7,8 @@ class HashMap:
     def _hash_function(self, key):
         return hash(key) % self.bucket_size
 
-    # add function (If there are no special circumstances, simple methods will no longer be commented)
+    # add function (If there are no special circumstances,
+    # simple methods will no longer be commented)
     def add(self, key, value):
         index = self._hash_function(key)
         if self.buckets[index] is None:
@@ -48,16 +49,18 @@ class HashMap:
     # Reverse method is not applicable for a hash map.
     # def reverse(self):
 
-    # Iterate over the passed list lst, and for each element in the list, it checks if the element's length is 2, 
-    # and if not, raises a ValueError. 
-    # It then extracts the keys and values from the elements and adds them to the hash table using the add method.
+    # Iterate over the passed list lst, and for each element in the list,
+    # it checks if the element's length is 2,
+    #  and if not, raises a ValueError.
+    # It then extracts the keys and values from the elements and
+    # adds them to the hash table using the add method.
     def from_builtin_list(self, lst):
         for item in lst:
             if len(item) != 2:
-                raise ValueError("Each item in the list should be a tuple of (key, value).")
+                raise ValueError("Each item in the list should "
+                                 "be a tuple of (key, value).")
             key, value = item
             self.add(key, value)
-
 
     def to_builtin_list(self):
         result = []
@@ -75,8 +78,12 @@ class HashMap:
                         filtered_map.add(key, value)
         return filtered_map
 
-#Define a new MonoidHashMap class that inherits from the HashMap class. To implement the empty() and concat() methods
+# Define a new MonoidHashMap class that inherits from the HashMap class.
+# To implement the empty() and concat() methods
+
+
 class MonoidHashMap(HashMap):
+
     @classmethod
     def empty(cls):
         return cls()
