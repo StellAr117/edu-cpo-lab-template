@@ -14,14 +14,14 @@ class HashMap:
         index = self._hash_function(key)
         if self.buckets[index] is None:
             self.buckets[index] = [(key, value)]
-            self.keys_order.append(key)  
+            self.keys_order.append(key)
         else:
             for i, (existing_key, _) in enumerate(self.buckets[index]):
                 if existing_key == key:
                     self.buckets[index][i] = (key, value)
                     return
             self.buckets[index].append((key, value))
-            self.keys_order.append(key)  
+            self.keys_order.append(key)
 
     def set_element(self, key, value):
         self.add(key, value)
@@ -75,7 +75,7 @@ class HashMap:
 
     def to_builtin_list(self):
         result = []
-        for key in self.keys_order:  
+        for key in self.keys_order:
             for bucket in self.buckets:
                 if bucket:
                     for existing_key, value in bucket:
@@ -104,10 +104,10 @@ class MonoidHashMap(HashMap):
 
     def concat(self, other):
         new_map = MonoidHashMap()
-        for key in self.keys_order:  
+        for key in self.keys_order:
             value = self.get(key)
             new_map.add(key, value)
-        for key in other.keys_order:  
+        for key in other.keys_order:
             value = other.get(key)
             new_map.add(key, value)
         return new_map

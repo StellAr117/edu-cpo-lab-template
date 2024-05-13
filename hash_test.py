@@ -67,19 +67,14 @@ class TestMonoidHashMap(unittest.TestCase):
         self.assertEqual(result, 3)
 
 
-from hypothesis import given, strategies as st
-import unittest
-from hash import MonoidHashMap
-
 class TestMonoidHashMapPBT(unittest.TestCase):
 
-    # 修改了语法错误的部分
     @given(st.lists(st.tuples(st.text(), st.integers())),
            st.lists(st.tuples(st.text(), st.integers())),
            st.lists(st.tuples(st.text(), st.integers())))
     def test_monoid_associativity(self, lst1, lst2, lst3):
-        hashmap1 = MonoidHashMap() # 初始化实例
-        hashmap1.from_builtin_list(lst1) # 调用实例方法
+        hashmap1 = MonoidHashMap()
+        hashmap1.from_builtin_list(lst1)
         hashmap2 = MonoidHashMap()
         hashmap2.from_builtin_list(lst2)
         hashmap3 = MonoidHashMap()
@@ -91,9 +86,8 @@ class TestMonoidHashMapPBT(unittest.TestCase):
 
     @given(st.lists(st.tuples(st.text(), st.integers())))
     def test_monoid_identity(self, lst):
-        hashmap = MonoidHashMap() # 初始化实例
-        hashmap.from_builtin_list(lst) # 调用实例方法
-        
+        hashmap = MonoidHashMap()
+        hashmap.from_builtin_list(lst)
         empty_map = MonoidHashMap.empty()
         self.assertEqual(hashmap.concat(empty_map).to_builtin_list(),
                          hashmap.to_builtin_list())
