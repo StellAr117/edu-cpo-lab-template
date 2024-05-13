@@ -1,5 +1,6 @@
 import unittest
 from hash import HashMap, MonoidHashMap
+from hypothesis import given, strategies as st
 
 
 class TestHashMap(unittest.TestCase):
@@ -64,6 +65,40 @@ class TestMonoidHashMap(unittest.TestCase):
         hashmap.add('key2', 2)
         result = hashmap.reduce_process_elements(lambda x, y: x + y)
         self.assertEqual(result, 3)
+
+
+from hypothesis import given, strategies as st
+import unittest
+from hash import MonoidHashMap
+
+class TestMonoidHashMapPBT(unittest.TestCase):
+
+    # 修改了语法错误的部分
+    @given(st.lists(st.tuples(st.text(), st.integers())),
+           st.lists(st.tuples(st.text(), st.integers())),
+           st.lists(st.tuples(st.text(), st.integers())))
+    def test_monoid_associativity(self, lst1, lst2, lst3):
+        hashmap1 = MonoidHashMap() # 初始化实例
+        hashmap1.from_builtin_list(lst1) # 调用实例方法
+        hashmap2 = MonoidHashMap()
+        hashmap2.from_builtin_list(lst2)
+        hashmap3 = MonoidHashMap()
+        hashmap3.from_builtin_list(lst3)
+
+        left = hashmap1.concat(hashmap2).concat(hashmap3)
+        right = hashmap1.concat(hashmap2.concat(hashmap3))
+        self.assertEqual(left.to_builtin_list(), right.to_builtin_list())
+
+    @given(st.lists(st.tuples(st.text(), st.integers())))
+    def test_monoid_identity(self, lst):
+        hashmap = MonoidHashMap() # 初始化实例
+        hashmap.from_builtin_list(lst) # 调用实例方法
+        
+        empty_map = MonoidHashMap.empty()
+        self.assertEqual(hashmap.concat(empty_map).to_builtin_list(),
+                         hashmap.to_builtin_list())
+        self.assertEqual(empty_map.concat(hashmap).to_builtin_list(),
+                         hashmap.to_builtin_list())
 
 
 if __name__ == '__main__':
