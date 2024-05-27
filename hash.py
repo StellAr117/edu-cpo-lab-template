@@ -103,14 +103,10 @@ class MonoidHashMap(HashMap):
         return cls()
 
     def concat(self, other):
-        new_map = MonoidHashMap()
-        for key in self.keys_order:
-            value = self.get(key)
-            new_map.add(key, value)
         for key in other.keys_order:
             value = other.get(key)
-            new_map.add(key, value)
-        return new_map
+            self.add(key, value)
+        return self  
 
     def map_by_function(self, func):
         new_map = MonoidHashMap()
